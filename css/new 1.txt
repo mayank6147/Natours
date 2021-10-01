@@ -1,0 +1,175 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+*/* "*"(universal selector only select real element not ::after and ::before)*/,
+*::after /* here universal select ::after*/,
+*::befor /* here universal select before*/{
+	margin:0px;
+	padding:0px;
+	/* using inheritance in box-sizing property because box-sizing property usally not inherit*/
+	box-sizing:inherit;
+}
+/* always write the css font-size property in html selector*/
+html{
+	/* converting 10px into persentage in respect to 16px is equal to 100%
+	``	16px = 100%
+		10px = 10 * 100 / 16 = 62.5%
+		
+	*/
+	font-size:62.5%;
+}
+body{
+	font-family:"Lato",sans-serif;
+	font-weight:400;
+	/*font-size:16px;*/
+	line-height:1.7;
+	color:#777;
+	/*padding:30px;   30px/10px = 3rem*/
+	padding:3rem;
+	box-sizing:border-box;
+}
+.header{
+	height:95vh;
+	background-image: linear-gradient(to right bottom ,hsl(111, 55%, 64%,0.8),hsl(160, 64%, 43%,0.8)) ,url(../img/hero.jpg);
+	background-size:cover;
+	background-position:top;
+	clip-path:polygon(0 0 , 100% 0 , 100% 75vh ,0 100%);
+	position:relative;
+}
+.header__logo-box{
+	position:absolute;
+	/*top:40px;   40px/10px = 4rem*/
+	top:4rem;
+	/*left:40px;   40px/10px = 4rem*/
+	left:4rem;
+}
+.header__logo{
+   /*height:35px;   35px/10px = 3.5rem*/
+	height:3.5rem;
+}
+.header__text-box{
+	position:absolute;
+	left:50%;
+	top:40%;
+	transform:translate(-50%,-50%);
+	text-align:center;
+}
+
+.heading-primary{
+	color:#fff;
+	text-transform:uppercase;
+	backface-visibility:hidden;
+   /*margin-bottom:60px;   60px/10px = 6rem*/
+	margin-bottom:6rem;
+	/* to stop shaking the animation upwards we use backface-visibility property as hidden*/
+}
+.heading-primary--main{
+	display:block;
+	font-size:6rem;
+	font-weight:40rem;
+	letter-spacing:3.5rem;
+	animation-name:moveInLeft;
+	animation-duration:1s;
+	animation-timing-function:ease-out;
+	/*animation-delay:3s;*/
+}
+.heading-primary--sub{
+	display:block;
+	font-size:2rem;
+	font-weight:500;
+	letter-spacing:1.75rem;
+	animation:moveInRight 1s ease-out;
+	/*animation-iteration-count:5;*/
+}
+@keyframes moveInLeft{
+	0%{
+		opacity:0;
+		transform:translateX(-10rem);
+	}
+	80%{
+		transform:translateX(1rem);
+	}
+	100%{
+		opacity:1;
+		transform:translate(0);
+	}
+}
+@keyframes moveInRight{
+	0%{
+		opacity:0;
+		transform:translateX(2rem);
+	}
+	80%{
+		opacity:1;
+		transform:translateX(-2rem);
+	}
+	100%{
+		opacity:0;
+		transform:translate(0);
+	}
+}
+@keyframes moveInButton{
+	0%{
+		opacity:0;
+		transform:translateY(4rem);
+	}
+	100%{
+		opacity:1;
+		transform:translateY(0);
+	}
+}
+.btn:link,
+.btn:visited{
+	font-size:1.6rem;
+	text-transform:uppercase;
+	text-decoration:none;
+	padding:1.5rem 4rem;
+	display:inline-block;
+	border-radius:10rem;
+	transition:all 0.2s;
+	position:relative;
+}
+.btn:hover{
+	transform:translateY(-0.3rem);
+	box-shadow:0 1rem 2rem rgba(0,0,0,0.2);
+}
+.btn:active{
+	transform:translateY(-0.1rem);
+	box-shadow:0 0.5rem 2rem rgba(0,0,0,0.2);
+	/* active psudo class link to the link stated */
+}
+.btn--white{
+	background-color:#fff;
+	color:#777;
+}
+.btn::after{
+	content:"";
+	display:inline-block;
+	position:absolute;
+	right:0;
+	left:0;
+	top:0;
+	border-radius:10rem;
+	z-index:-1;
+	height:100%;
+	width:100%;
+	transition:all 0.5s;
+	
+	
+}
+.btn--white::after{
+	background-color:#fff;
+}
+.btn:hover::after{
+	transform:scaleX(1.4) scaleY(1.6);
+	opacity:0;
+}
+.btn--animated{
+	animation:moveInButton .55s ease-out 0.75s;
+	animation-fill-mode:backwards;
+}

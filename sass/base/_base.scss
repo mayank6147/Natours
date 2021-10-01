@@ -1,0 +1,62 @@
+
+/* "*"(universal selector only select real element not ::after and ::before)*/
+
+/* here universal select ::after*/
+
+/* here universal select before*/
+*,
+*::after,
+*::before{
+    margin: 0px;
+    padding: 0px;
+    /* using inheritance in box-sizing property because box-sizing property usally not inherit*/
+    box-sizing: inherit;
+}
+
+html {
+        /* converting 10px into persentage in respect to 16px is equal to 100%
+	``	16px = 100%
+		10px = 10 * 100 / 16 = 62.5%
+		
+	*/
+        // this define what 1rem is 
+    box-sizing: inherit;
+    font-size: 62.5%; // 1rem  = 10px 10/16 = 0.625 -- 62.5%
+
+
+
+    // landscape size is more than portrate 
+
+
+    @include respond(big-desktop) {
+        //screen-size > 1800px
+        font-size: 75%; // 1rem = 12px 12/16 = 0.75 -- 75%
+    }
+
+    @include respond(tab-land) {
+        // screen-size < 1200px
+        font-size: 56.25%; // 1rem = 9px 9/16 = 0.56.25 -- 56.25%
+    }
+
+    @include respond(tab-port) {
+        // screen-size < 900px
+        font-size: 50%; // 1rem = 8px 8/16 = 0.5 -- 50%
+    }
+
+  /*   @include respond(phone) {
+        // screen-size < 600px
+        font-size: 30%; // 1rem = 8px 8/16 = 0.5 -- 50%
+    }*/
+}
+body{
+       box-sizing: border-box;
+       padding: 3rem;
+       @include respond(tab-port) {
+           padding:0; 
+       }
+       
+}
+p{
+    margin: 0;
+    padding:0;
+}
